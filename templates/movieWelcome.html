@@ -1,0 +1,35 @@
+{% block content %}
+
+<style>
+	body {
+   		font-family: 		"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   		font-weight: 		300;
+	}
+	#welcomeMsg {
+     	position:			absolute;
+     	width:				300px;
+     	height:				200px;
+     	z-index:			15;
+     	top:				50%;
+     	left:				50%;
+     	margin:				-100px 0 0 -150px;
+     	text-align: 		center;
+     	font-size: 			50px;
+	}
+	#link {
+		font-size:			20px;
+	}
+	#movieLink {
+		font-style: 		underline;
+		color: 				black;
+	}
+</style>
+
+<title>Movie Database</title>
+<div id="welcomeMsg">
+	Welcome! 
+	<p id="link">Would you like to view our <a id="movieLink" href="http://127.0.0.1:5000/films">movies</a>?</p>
+</div>
+
+
+{% endblock %}

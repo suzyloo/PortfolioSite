@@ -1,0 +1,40 @@
+{% block content %}
+
+<style>
+	body {
+   		font-family: 		"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   		font-weight: 		300;
+		}
+	#titleContainer {
+		font-size:			50px; 
+		padding-top:		50px;
+		text-align:			center;
+	}
+	#listing {
+		font-size:			16px;
+	}
+	.link {
+		color:				black;
+	}
+	#small {
+		position:			absolute;
+		bottom:				50px;
+		font-size:			12px;
+		margin-left:		50%;
+	}
+	
+</style>
+
+<title>Movie Database | {{title}}</title>
+
+<div id="titleContainer">
+	{{title}}
+	<div id="listing">
+		<p>{{movies[title]}}</p>
+	</div>
+</div>
+<div id="small">
+	<a class="link" href="http://127.0.0.1:5000/films">Back</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% block content %}
+
+<style>
+	* {
+   		font-family: 		"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   		font-weight: 		300;
+		}
+	#titleContainer {
+		font-size:			50px; 
+		padding-top:		50px;
+		text-align:			center;
+	}
+	#listing {
+		font-size:			16px;
+	}
+	.link {
+		color:				black;
+	}
+	.head {
+		color:				white;
+		background-color:	black;
+		padding-left: 		5px;
+	}
+	
+</style>
+
+<title>Movie Database | List</title>
+
+<div id="titleContainer">
+	<p>Movies</p>
+	<div id="listing">
+	<center>
+	<table style="max-width:400px; width:100%">
+		<tr>
+			<td class="head">Title</td>
+			<td class="head">Year</td>
+		</tr>
+		{% for key in sortedKeys %}
+		<tr>
+			<td>
+				<a class="link" href="http://127.0.0.1:5000/films/{{key}}">{{key}}</a>
+			</td>
+			<td>
+				{{movies[key]}}
+			</td>
+		</tr>
+			
+		{% endfor %}
+	</table>
+	</center>
+	</div>
+</div>
+
+{% endblock %}
