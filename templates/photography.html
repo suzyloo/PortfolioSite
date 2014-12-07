@@ -1,0 +1,156 @@
+{% block content %}
+
+<script src="/static/lightboxJS/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/static/lightboxJS/lightbox.min.js"></script>
+
+<link href="/static/lightBoxCSS/lightbox.css" rel="stylesheet" />
+
+<style>
+	body {
+   		font-family: 			"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   		font-weight: 			300;
+	}
+	#container {
+    	height: 				700px;
+    	width:					100%;
+    	margin: 				auto;
+    	text-align:				center;
+    	margin: 				auto;
+	}
+	.icon {
+		width:					100%;
+		max-width:				200px;
+	}
+	.smallTest {
+		width:					100%;
+		max-width:				400px;
+		height:					266px;
+	}
+	.gridItem{
+		float:					left;
+		width:					100%;
+		max-width:				400px;
+		height:					266px;
+		margin:					4px;
+		overflow:				auto;
+	}
+	@media screen and (min-width:1225px) {
+		#photoContainer {
+			max-width: 			1224px;
+		}
+	}
+    @media screen and (max-width:1224px) and (min-width:817px) {
+		#photoContainer {
+			max-width: 			816px;
+		}
+    }
+	@media screen and (max-width:816px) {
+		#photoContainer {
+			max-width: 			408px;
+		}
+    }
+   
+	#photoContainer {
+		margin:					0 auto;
+		overflow:				auto;
+	}
+	#home{
+		padding-top:			50px;
+		padding-bottom:			50px;
+	}
+	#back {
+		text-decoration:		none;
+		color:					black;
+	}
+	#intro {
+		margin-top:				10px;
+		margin-bottom:			34px;
+	}
+	#photoText {
+		width:					100%;
+		max-width:				500px;
+	}
+	#photoHeader {
+		width:					100%;
+	}
+	.canister {
+		width:					100%;
+		max-width:				200px;
+	}
+</style>
+
+<title>Photography</title>
+<div id="container">
+	<div id="photoHeader">
+		<img id="filmLeft"	class="canister"	src="/static/images/filmLeft.png">
+		<img id="photoText"	src="/static/images/photoText.png">
+		<img id="filmRight"	class="canister"	src="/static/images/filmRight.png">
+	</div>
+	<div id="intro"> These photos are all taken with an Nikon N60, and are generally taken using 400 speed film.</div>
+	<div id="photoContainer">
+		{% for x in photos %}
+			<!-- <div class="gridItem" id="{{x.path}}" style="background:url('/static/images/photoSmall/{{x.path}}') no-repeat center center; background-size: cover;" > -->	
+			<a href="/static/images/Photography/{{x.path}}" data-lightbox="photos" data-title="{{x.title}} - {{x.desc}}" data-desc="{{x.desc}}">
+			<div class="gridItem" id="{{x.path}}" style="background:url('/static/images/photoSmall/{{x.path}}') no-repeat center center; background-size: cover;" >
+			
+			</div>
+			</a>
+		{% endfor %}
+	</div>
+	<div id="home"><a id="back" href="/">back</a></div>
+</div>
+
+<script>
+	
+// --------------------------------------
+// --------------  JQuery  --------------
+// --------------------------------------
+
+$( ".gridItem" ).click(function() {
+	var hat = this.id;
+	lightBox(hat);
+});
+
+function lightBox(key){
+	// The key will be used to get the correct information from 'photos'.
+	var path;
+	var title;
+	var desc;
+	var tags;
+	
+	
+	{% for pic in photos %}
+		var picPath = "{{pic.path}}";
+		if(picPath == key){
+			path = "{{pic.path}}";
+			title = "{{pic.title}}";
+			desc = "{{pic.desc}}";
+			tags = "{{pic.tags}}";
+		}
+	{% endfor %}
+	
+	console.log(path);
+	console.log(title);
+	console.log(desc);
+	console.log(tags);
+	
+}
+
+
+function photograph(path, title, desc, tags) {
+    this.path = path;
+    this.title = title;
+    this.desc = desc;
+    this.tags = tags;
+    console.log("DONE");
+}
+
+
+
+
+
+
+</script>
+
+
+{% endblock %}

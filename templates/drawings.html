@@ -1,0 +1,105 @@
+{% block content %}
+
+<script src="/static/lightboxJS/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="/static/lightboxJS/lightbox.min.js"></script>
+
+<link href="/static/lightBoxCSS/lightbox.css" rel="stylesheet" />
+
+<style>
+	body {
+   		font-family: 			"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   		font-weight: 			300;
+	}
+	#container {
+    	height: 				700px;
+    	width:					100%;
+    	margin: 				auto;
+    	text-align:				center;
+    	margin: 				auto;
+	}
+	.icon {
+		width:					100%;
+		max-width:				200px;
+	}
+	.smallTest {
+		width:					100%;
+		max-width:				400px;
+		height:					266px;
+	}
+	.gridItem{
+		float:					left;
+		width:					100%;
+		max-width:				400px;
+		height:					266px;
+		margin:					4px;
+		overflow:				auto;
+	}
+	@media screen and (min-width:1225px) {
+		#photoContainer {
+			max-width: 			1224px;
+		}
+	}
+    @media screen and (max-width:1224px) and (min-width:817px) {
+		#photoContainer {
+			max-width: 			816px;
+		}
+    }
+	@media screen and (max-width:816px) {
+		#photoContainer {
+			max-width: 			408px;
+		}
+    }
+   
+	#photoContainer {
+		margin:					0 auto;
+		overflow:				auto;
+	}
+	#home{
+		padding-top:			50px;
+		padding-bottom:			50px;
+	}
+	#back {
+		text-decoration:		none;
+		color:					black;
+	}
+	#intro {
+		margin-top:				10px;
+		margin-bottom:			34px;
+	}
+	#drawingHeader {
+		width:					100%;
+	}
+	.hand{
+		width:					100%;
+		max-width:				200px;
+	}
+	#drawings {
+		width:					100%;
+		max-width:				500px;
+	}
+	
+</style>
+
+<title>Digital Art</title>
+<div id="container">
+	<div id="drawingHeader">
+		<img id="handLeft"	class="hand"	src="/static/images/handLeft.png">
+		<img id="drawings"	 	src="/static/images/drawings.png">
+		<img id="handRight"	class="hand"	src="/static/images/handRight.png">
+	</div>
+	
+	<div id="intro"> I use a Wacom Bamboo tablet and Photoshop, but generally have no idea what I'm doing. </div>
+	<div id="photoContainer">
+		{% for x in photos %}
+			<a href="/static/images/drawings/{{x.path}}" data-lightbox="photos" data-title="{{x.title}} - {{x.desc}}" data-desc="{{x.desc}}">
+			<div class="gridItem" id="{{x.path}}" style="background:url('/static/images/zdrawSmall/{{x.path}}') no-repeat center center; background-size: cover;" >
+			
+			</div>
+			</a>
+		{% endfor %}
+	</div>
+	<div id="home"><a id="back" href="/">back</a></div>
+</div>
+
+
+{% endblock %}

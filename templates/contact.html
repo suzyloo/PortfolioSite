@@ -1,0 +1,104 @@
+{% block content %}
+
+<script type="text/javascript" src="{{
+  url_for('static', filename='funThings.js') }}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/funThings.js"></script>
+
+
+<style>
+	body {
+   		font-family: 		"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   		font-weight: 		300;
+	}
+	#container {
+    	height: 			700px;
+    	width:				100%;
+    	margin: 			auto;
+    	text-align:			center;
+    	margin: 			auto;
+	}
+	#secondImg {
+		width:				100%;
+		max-width:			400px;
+		margin-top:			10px;
+		margin-bottom:		30px;
+		margin-right:		auto;
+		margin-left:		auto;
+	}
+	
+	#firstImg {
+		width:				100%;
+		max-width:			450px;
+		z-index:			10;
+		margin-right:		auto;
+		margin-left:		auto;
+	}
+	#pigeon, #welcomeMsg {
+		width:				100%;
+		max-width:			400px;
+	}
+	#navigation{
+		display:			inline-block;
+	}
+	#intro {
+		margin-top:				10px;
+		margin-bottom:			34px;
+		width:					100%;
+		max-width:				440px;
+		margin-left:			auto;
+		margin-right:			auto;
+	}
+	.serviceType{
+		text-decoration:		underline;
+	}
+	#coord {
+		font-size:				12px;
+	}
+	a {
+		color:					black;
+		text-decoration:		none;
+		font-weight:			bold;
+	}
+	
+</style>
+
+<title>Suzyloo</title>
+<div id="container">
+	<div id="firstImg">
+		<img id="pigeon" src="/static/images/pigeon.png">	
+	</div>
+	
+	<div id="intro">
+		Hello, is it me you're looking for?
+		
+		<p class="serviceType">
+			CARRIER PIGEON
+			<br><span id="coord">(77.5167° S, 168.5333° E)</span>
+		</p>
+		<p>
+			This is the best method to reach me. Please allow 3-5 days after arrival for your pigeon to return home.
+		</p>
+		
+		<p class="serviceType">
+			EMAIL
+		</p>
+		<p>
+			If you're still using bourgeois means of communication, I can also be reached by email at <span id="email"> </span>.
+		</p>
+		
+	</div>
+	
+	
+</div>
+
+<script>
+	var hatMouse = "susandianebowes";
+	var mouseHat = "gmail.com"
+	var linktext = hatMouse + "@" + mouseHat ;
+	var emailHolder = document.getElementById("email");
+	emailHolder.innerHTML = ("<a href='" + "mail" + "to:" + hatMouse + "@" + mouseHat + "'>" + linktext + "</a>");
+
+</script>
+
+{% endblock %}

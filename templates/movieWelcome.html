@@ -1,35 +1,114 @@
 {% block content %}
 
+<script type="text/javascript" src="{{
+  url_for('static', filename='funThings.js') }}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/funThings.js"></script>
+
+
 <style>
 	body {
    		font-family: 		"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
    		font-weight: 		300;
 	}
-	#welcomeMsg {
-     	position:			absolute;
-     	width:				300px;
-     	height:				200px;
-     	z-index:			15;
-     	top:				50%;
-     	left:				50%;
-     	margin:				-100px 0 0 -150px;
-     	text-align: 		center;
-     	font-size: 			50px;
+	#container {
+    	height: 			700px;
+    	width:				100%;
+    	margin: 			auto;
+    	text-align:			center;
+    	margin: 			auto;
 	}
-	#link {
-		font-size:			20px;
+	#secondImg {
+		width:				100%;
+		max-width:			400px;
+		margin-top:			10px;
+		margin-bottom:		30px;
+		margin-right:		auto;
+		margin-left:		auto;
 	}
-	#movieLink {
-		font-style: 		underline;
-		color: 				black;
+	
+	#firstImg {
+		width:				100%;
+		max-width:			450px;
+		z-index:			10;
+		margin-right:		auto;
+		margin-left:		auto;
 	}
+	#test, #welcomeMsg {
+		width:				100%;
+		max-width:			450px;
+	}
+	#test {
+		max-width:			400px;
+	}
+	#navigation{
+		display:			inline-block;
+	}
+	.icon {
+		width:				100%;
+		max-width:			180px;
+	}
+	#photoIcon {
+		margin-right:		-2px;
+	}
+	#writingIcon {
+		margin-left:		-2px;
+	}
+	a {
+		text-decoration:	none;
+		color:				black;
+	}
+	#aboutContact {
+		padding-top:		30px;
+		padding-bottom: 	30px;
+	}
+	
+	
 </style>
 
-<title>Movie Database</title>
-<div id="welcomeMsg">
-	Welcome! 
-	<p id="link">Would you like to view our <a id="movieLink" href="https://hidden-cliffs-1204.herokuapp.com//films">movies</a>?</p>
+<title>Suzyloo</title>
+<div id="container">
+	<div id="firstImg">
+		<img id="test" src="/static/images/base.png" onmouseover="this.src='/static/images/baseHover.png'" onmousedown="this.src='/static/images/baseTongue.png'" onmouseout="this.src='/static/images/base.png'">
+		
+		
+	</div>
+	<div id="secondImg">
+		<img id="welcomeMsg" src="/static/images/suzyDiane.png">
+	</div>
+	<div id="navigation">
+		<a href="/photography"> <img id="photoIcon"	 	class="icon"	src="/static/images/photoIcon.png"> </a>
+		<a href="/drawings"> <img id="drawingIcon" 	class="icon"	src="/static/images/digArtIcon.png"> </a>
+		<img id="writingIcon"	class="icon"	src="/static/images/writingIcon.png">
+	</div>
+	<div id="aboutContact">
+		<a href="about">ABOUT</a>
+		|
+		<a href="contact">CONTACT</a>
+	</div>
 </div>
 
+<script>
+
+	$('#writingIcon').mouseover(function(){
+		$('#test').attr('src', '/static/images/right.png');
+	})
+	$('#writingIcon').mouseleave(function(){
+		$('#test').attr('src', '/static/images/base.png');
+	})
+	$('#drawingIcon').mouseover(function(){
+		$('#test').attr('src', '/static/images/baseCenter.png');
+	})
+	$('#drawingIcon').mouseleave(function(){
+		$('#test').attr('src', '/static/images/base.png');
+	})
+	$('#photoIcon').mouseover(function(){
+		$('#test').attr('src', '/static/images/left.png');
+	})
+	$('#photoIcon').mouseleave(function(){
+		$('#test').attr('src', '/static/images/base.png');
+	})
+	
+</script>
 
 {% endblock %}
