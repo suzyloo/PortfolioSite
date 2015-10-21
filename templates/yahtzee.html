@@ -1,0 +1,491 @@
+{% block content %}
+
+<script type="text/javascript" src="{{
+  url_for('static', filename='funThings.js') }}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="/static/funThings.js"></script>
+
+
+<title>Suzyloo - Yahtzee</title>
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Dosis:300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="yahtzee.css">
+	
+	<title> Yahtzee </title>
+</head>
+	<body>
+		
+		
+		
+		<script language="JavaScript">
+			// Javascript ayi-yi-yi
+			var rollCount = 0;
+			var diceARRAY = new Array();
+			var totalScore = 0;
+			var resetArray = ["sst", "lst", "ful", "3of", "4of", "ytz", "chn"];
+			
+			// Change the dice into numbered dice.
+			function roll()
+			{
+				// Make sure to check whether or not the dice are selected.
+				if(rollCount != 3){
+					for(x=0; x<5; x++){
+						if(document.getElementById("d" + x) != null){
+							var n = Math.floor(Math.random()*6)+1;
+							document.getElementById("d"+x).src="d"+n+".png";
+							document.getElementById("d"+x).value = n;
+						}
+					}
+					rollCount = rollCount +1;
+				}
+				else if(rollCount == 3){
+						alert("No more rolls!");
+				}
+				diceARRAY.length = 0;
+			}
+			
+			
+			function check(dice){
+				// The variable "dice" is equal to the value shown.
+				console.log("Dice: " + dice);
+				// Check the length of the variable ID.
+				// If it's a "d" dice, change the ID and the image to p / purple.
+				if(document.getElementById("d"+dice) != null){
+					var normDice = document.getElementById("d"+dice);
+					var value = normDice.value;
+					normDice.id = "p" + dice;
+					normDice.src = "d" + value + "purple.png";
+				}
+				else {
+					var purpDice = document.getElementById("p"+dice);
+					var value = purpDice.value;
+					purpDice.id = "d" + dice;
+					purpDice.src = "d" + value + ".png";
+				}
+			}
+			
+			function selectScoring(id){
+				
+				//Once this is clicked, we need to reset the roll count.
+					rollCount = 0;
+					
+				// Let's get an array of the dice values.
+					for(x=0; x<5; x++){
+						if(document.getElementById("d" + x) != null){
+							var val = document.getElementById("d"+x).value;
+							if(val > 0){
+								diceARRAY.push(val);
+							}
+						} else {
+							var val = document.getElementById("p"+x).value;
+							if(val > 0){
+								diceARRAY.push(val);
+							}
+						}
+					}
+					console.log(diceARRAY);
+				// Check if the ID length is 2 or 3.
+				// An ID length of 2 implies the number needs to be calculated.
+				
+				// MAKE SURE THE DICE ARRAY ISN'T EMPTY.
+					if(diceARRAY.length >0) {
+					
+						// We need to set a score.
+						if(id == "1s") {
+							var score = 0;
+							for(x=0; x<5; x++){
+								if(diceARRAY[x] == 1){
+									score = score + 1;
+								}
+							}
+							setScore(id, score);
+						}
+						if(id == "2s") {
+							var score = 0;
+							for(x=0; x<5; x++){
+								if(diceARRAY[x] == 2){
+									score = score + 2;
+								}
+							}
+							setScore(id, score);
+						}
+						if(id == "3s") {
+							var score = 0;
+							for(x=0; x<5; x++){
+								if(diceARRAY[x] == 3){
+									score = score + 3;
+								}
+							}
+							setScore(id, score);
+						}
+						if(id == "4s") {
+							var score = 0;
+							for(x=0; x<5; x++){
+								if(diceARRAY[x] == 4){
+									score = score + 4;
+								}
+							}
+							setScore(id, score);
+						}
+						if(id == "5s") {
+							var score = 0;
+							for(x=0; x<5; x++){
+								if(diceARRAY[x] == 5){
+									score = score + 5;
+								}
+							}
+							setScore(id, score);
+						}
+						if(id == "6s") {
+							var score = 0;
+							for(x=0; x<5; x++){
+								if(diceARRAY[x] == 6){
+									score = score + 6;
+								}
+							}
+							setScore(id, score);
+						}
+						
+						
+					// An ID length of 3 means that the scoring is pre-determined.
+						// We need to reset all the dice to be blue zeros.
+						
+						// We need to set a score.
+						// We determine the value of the "score" variable by going through a series of if statements.
+						var score = 0;
+						if(id == "sst") {
+							// Check for a small straight.
+							// 1, 2, 3, 4
+							if(inArray(1, diceARRAY) == true && inArray(2, diceARRAY) == true && inArray(3, diceARRAY) == true && inArray(4, diceARRAY) == true){
+								setScore(id, 30);
+							// 2, 3, 4, 5
+							} else if(inArray(2, diceARRAY) == true && inArray(3, diceARRAY) == true && inArray(4, diceARRAY) == true && inArray(5, diceARRAY) == true) {
+								setScore(id, 30);
+							// 3, 4, 5, 6
+							} else if(inArray(3, diceARRAY) == true && inArray(4, diceARRAY) == true && inArray(5, diceARRAY) == true && inArray(6, diceARRAY) == true) {
+								setScore(id, 30);
+							} else {
+								setScore(id, 0);
+							}
+						}
+						else if(id == "lst") {
+							if(inArray(1, diceARRAY) == true && inArray(2, diceARRAY) == true && inArray(3, diceARRAY) == true && inArray(4, diceARRAY) == true && inArray(5, diceARRAY) == true){
+								setScore(id, 40);
+							// 2, 3, 4, 5
+							} else if(inArray(2, diceARRAY) == true && inArray(3, diceARRAY) == true && inArray(4, diceARRAY) == true && inArray(5, diceARRAY) == true && inArray(6, diceARRAY) == true) {
+								setScore(id, 40);
+							} else {
+								setScore(id, 0);
+							}
+						}
+						else if(id == "ful") {
+							// 25: sort the array, check for repetitions.
+							var sorted = diceARRAY.sort();
+							if(sorted[0] != sorted[1]){
+								setScore(id, 0);
+							} else {
+								if(sorted[1] == sorted [2]){
+									// We have three of a kind. (First three in array.)
+									if(sorted[3] == sorted[4]){
+										setScore(id, 25);
+									} else {
+										setScore(id, 0);
+									}
+								} else {
+									// The first two match but not the third.
+									// Check if the last three match.
+									if(sorted[2] == sorted[3] && sorted[3] == sorted[4]){
+										setScore(id, 25);
+									} else {
+										setScore(id, 0);
+									}
+								}
+							}
+							
+						}
+						else if(id == "3of") {
+							var sorted = diceARRAY.sort();
+							var score = 0;
+							for(x=0; x<5; x++){
+								score = score + sorted[x];
+							}
+							// If the first three match.
+							if(sorted[0]==sorted[1] && sorted[1]==sorted[2]){
+								setScore(id, score);
+							} else if(sorted[1]==sorted[2] && sorted[2]==sorted[3]){
+								setScore(id, score);
+							} else if(sorted[2]==sorted[3] && sorted[3]==sorted[4]){
+								setScore(id, score);
+							} else {
+								setScore(id, 0);
+							}
+						}
+						else if(id == "4of") {
+							var sorted = diceARRAY.sort();
+							var score = 0;
+							for(x=0; x<5; x++){
+								score = score + sorted[x];
+							}
+							if(sorted[0]==sorted[1] && sorted[1]==sorted[2] && sorted[2]==sorted[3] && sorted[0]==sorted[3]){
+								setScore(id, score);
+							} else if(sorted[1]==sorted[2] && sorted[2]==sorted[3] && sorted[3]==sorted[4] && sorted[1]==sorted[4]){
+								setScore(id, score);
+							} else {
+								setScore(id, 0);
+							}
+							
+						}
+						else if(id == "chn") {
+							var score = 0;
+							for(x=0; x<5; x++){
+								score = score + diceARRAY[x];
+							}
+							setScore(id, score);
+						}
+						else if(id == "ytz") {
+							var sorted = diceARRAY.sort();
+							if(sorted[0] == sorted[4]){
+								setScore(id, 50);
+							} else {
+								setScore(id, 0);
+							}
+						}
+						else if(id == "chn"){
+							var score = 0;
+							for(x=0; x<5; x++){
+								score = score + sorted[x];
+							}
+							setScore(id, score);
+						}
+					} else {
+						
+					}
+					
+					// We need to remove any onclick events.
+					
+					// We need to update the TOTAL.
+					
+			}
+			function inArray(needle,haystack){
+			    var count=haystack.length;
+			    for(var i=0;i<count;i++)
+			    {
+			        if(haystack[i]===needle){return true;}
+			    }
+			    return false;
+			}
+			
+			function setScore(id, score){
+				var box = document.getElementById(id);
+				box.innerHTML = score;
+				box.onclick = null;
+				
+				//Reset the dice.
+				for(x=0; x<5; x++){
+					if(document.getElementById("d"+x) != null){
+						var normDice = document.getElementById("d"+x);
+						normDice.src = "d" + "0.png";
+					}
+					else {
+						var purpDice = document.getElementById("p"+x);
+						var value = purpDice.value;
+						purpDice.id = "d" + x;
+						purpDice.src = "d" + "0.png";
+					}
+				}
+				// Reset the array (no double-scoring!)
+				
+				// Set the TOTAL score:
+				totalScore = totalScore + score;
+				var totalBox = document.getElementById('TTL');
+				totalBox.value = totalScore;
+				while(diceARRAY.length > 0){
+					diceARRAY.pop();
+				}
+				diceARRAY.length = 0;
+			}
+
+			function newGame(){
+				var x;
+    			if (confirm("This will completely reset your game. Continue?") == true) {
+       				// The reload function doesn't seem sufficient... Sigh.
+       				// Manually reset both the disabled property and the value.
+       				for(x=1; x<7; x++){
+       					var currBox = document.getElementById(x+"s");
+       					currBox.disabled = false;
+       					currBox.value = "";
+       				}
+       				// sst, lst, ful, 3of, 4of, ytz, and chn resetting.
+       				for(i=0; i<resetArray.length; i++){
+       					var currBox = document.getElementById(resetArray[i]);
+       					currBox.disabled = false;
+       					currBox.value = "";
+       				}
+       				totalScore = 0;
+       				document.getElementById('TTL').value = 0;
+       				location.reload();
+       				 
+			    } else {
+			    }
+			}
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+	
+	<div id="mainContent">
+	
+	<div id="rightPartition">
+		<div id="logoDiv">
+			<h1><img id="logo" src="yahtzeeLogoWhiteDrop.png"></h1>
+		</div>
+		<div id="diceHolder" class="goldenBackground">
+			<!-- The border is for debugging only. -->
+			<div id="roll">
+				<input class="button" id="rollButton" type="button" value="Roll" onclick="roll()">
+			</div>
+			<div id="dice">
+				<img class="lilDice" onclick="check(0)" id="d0" src="d0.png">
+				<img class="lilDice" onclick="check(1)" id="d1" src="d0.png">
+				<img class="lilDice" onclick="check(2)" id="d2" src="d0.png">
+				<img class="lilDice" onclick="check(3)" id="d3" src="d0.png">
+				<img class="lilDice" onclick="check(4)" id="d4" src="d0.png">
+			</div>
+			<div id="newGame">
+				<input class="button" id="newGameButton" type="button" value="New Game" onclick="newGame()">
+			</div>
+		</div>
+	</div>
+	
+	<div id="leftPartition">
+		<!-- Let's try making a notepad! Woo! -->
+	<div id="yellowNotepad">
+		<div id="brownTop">
+		</div>
+		<div id="pinkLines">
+		</div>
+		<div class="normalLine firstLine">
+			<span class="noteText">1's
+			</text>
+			<div class="boxD" id="1s" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText"> 2's
+			</text>
+			<div class="boxD" id="2s" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText">3's
+			</text>
+			<div class="boxD" id="3s" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText"> 4's
+			</text>
+			<div class="boxD" id="4s" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText">5's
+			</text>
+			<div class="boxD" id="5s" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText">6's
+			</text>
+			<div class="boxD" id="6s" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText">  Small Straight
+			</text>
+			<div class="boxD" id="sst" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText">Large Straight
+			</text>
+			<div class="boxD" id="lst" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText">Full House
+			</text>
+			<div class="boxD" id="ful" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText">3-of-a-Kind
+			</text>
+			<div class="boxD" id="3of" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText">4-of-a-Kind
+			</text>
+			<div class="boxD" id="4of" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText">Yahtzee!!
+			</text>
+			<div class="boxD" id="ytz" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+			<span class="noteText">Chance
+			</text>
+			<div class="boxD" id="chn" onclick="selectScoring(this.id)">&nbsp;</div>
+		</div>
+		<div class="normalLine">
+ 			<span class="noteText">&nbsp;
+ 			</text>
+		</div>
+		<div class="normalLine">
+			<span class="noteText">Total:
+			</text>
+			<input class="box" disabled=true id="TTL" type="text"  size="3">
+		</div>
+		<div class="normalLine">
+ 			<span class="noteText">&nbsp;
+ 			</text>
+		</div>
+		<div class="normalLine">
+ 			<span class="noteText">&nbsp;
+ 			</text>
+		</div>
+		<div class="normalLine">
+ 			<span class="noteText">&nbsp;
+ 			</text>
+		</div>
+		<div class="normalLine">
+ 			<span class="noteText">&nbsp;
+ 			</text>
+		</div>
+		<div class="normalLine">
+ 			<span class="noteText">&nbsp;
+ 			</text>
+		</div>
+			
+	</div>
+	</div>
+
+</div>
+	
+</head>
+</html>
+
+
+
+
+
+
+
+
+
+{% endblock %}
