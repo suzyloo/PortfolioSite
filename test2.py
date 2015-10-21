@@ -102,6 +102,10 @@ def hello_brain():
 def hello_yahtzee():
     return render_template('yahtzee.html')
 
+@app.route('/web/')
+def hello_developer():
+    return render_template('web.html')
+
 if __name__ == '__main__':
     app.run()
 
