@@ -97,6 +97,10 @@ def hello_pigeon():
 @app.route('/about/')
 def hello_brain():
     return render_template('about.html')
+    
+@app.route('/yahtzee/')
+def hello_yahtzee():
+    return render_template('yahtzee.html')
 
 if __name__ == '__main__':
     app.run()
