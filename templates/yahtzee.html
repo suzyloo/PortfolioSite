@@ -41,7 +41,7 @@
 					for(x=0; x<5; x++){
 						if(document.getElementById("d" + x) != null){
 							var n = Math.floor(Math.random()*6)+1;
-							document.getElementById("d"+x).src="d"+n+".png";
+							document.getElementById("d"+x).src="/static/images/d"+n+".png";
 							document.getElementById("d"+x).value = n;
 						}
 					}
@@ -63,13 +63,13 @@
 					var normDice = document.getElementById("d"+dice);
 					var value = normDice.value;
 					normDice.id = "p" + dice;
-					normDice.src = "d" + value + "purple.png";
+					normDice.src = "/static/images/d" + value + "purple.png";
 				}
 				else {
 					var purpDice = document.getElementById("p"+dice);
 					var value = purpDice.value;
 					purpDice.id = "d" + dice;
-					purpDice.src = "d" + value + ".png";
+					purpDice.src = "/static/images/d" + value + ".png";
 				}
 			}
 			
@@ -293,13 +293,13 @@
 				for(x=0; x<5; x++){
 					if(document.getElementById("d"+x) != null){
 						var normDice = document.getElementById("d"+x);
-						normDice.src = "d" + "0.png";
+						normDice.src = "/static/images/d" + "0.png";
 					}
 					else {
 						var purpDice = document.getElementById("p"+x);
 						var value = purpDice.value;
 						purpDice.id = "d" + x;
-						purpDice.src = "d" + "0.png";
+						purpDice.src = "/static/images/d" + "0.png";
 					}
 				}
 				// Reset the array (no double-scoring!)
@@ -350,7 +350,7 @@
 	
 	<div id="rightPartition">
 		<div id="logoDiv">
-			<h1><img id="logo" src="yahtzeeLogoWhiteDrop.png"></h1>
+			<h1><img id="logo" src="/static/images/yahtzeeLogoWhiteDrop.png"></h1>
 		</div>
 		<div id="diceHolder" class="goldenBackground">
 			<!-- The border is for debugging only. -->
@@ -358,11 +358,11 @@
 				<input class="button" id="rollButton" type="button" value="Roll" onclick="roll()">
 			</div>
 			<div id="dice">
-				<img class="lilDice" onclick="check(0)" id="d0" src="d0.png">
-				<img class="lilDice" onclick="check(1)" id="d1" src="d0.png">
-				<img class="lilDice" onclick="check(2)" id="d2" src="d0.png">
-				<img class="lilDice" onclick="check(3)" id="d3" src="d0.png">
-				<img class="lilDice" onclick="check(4)" id="d4" src="d0.png">
+				<img class="lilDice" onclick="check(0)" id="d0" src="/static/images/d0.png">
+				<img class="lilDice" onclick="check(1)" id="d1" src="/static/images/d0.png">
+				<img class="lilDice" onclick="check(2)" id="d2" src="/static/images/d0.png">
+				<img class="lilDice" onclick="check(3)" id="d3" src="/static/images/d0.png">
+				<img class="lilDice" onclick="check(4)" id="d4" src="/static/images/d0.png">
 			</div>
 			<div id="newGame">
 				<input class="button" id="newGameButton" type="button" value="New Game" onclick="newGame()">
