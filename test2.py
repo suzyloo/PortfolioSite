@@ -106,9 +106,17 @@ def hello_yahtzee():
 def hello_developer():
     return render_template('web.html')
     
-@app.route('/portfolioSite/')
+@app.route('/web/portfolioSite/')
 def hello_portfolio():
     return render_template('portfolioSite.html')
+    
+@app.route('/web/analyticsSite/')
+def hello_webAnalytics():
+    return render_template('analyticsSite.html')
+    
+@app.route('/web/yahtzeeSite/')
+def hello_yahtzeeSite():
+    return render_template('yahtzeeSite.html')
 
 if __name__ == '__main__':
     app.run()
