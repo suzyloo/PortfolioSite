@@ -117,6 +117,10 @@ def hello_webAnalytics():
 @app.route('/web/yahtzeeSite/')
 def hello_yahtzeeSite():
     return render_template('yahtzeeSite.html')
+    
+@app.route('/adoptables/')
+def hello_adoptables():
+    return render_template('adoptables.html')
 
 if __name__ == '__main__':
     app.run()
