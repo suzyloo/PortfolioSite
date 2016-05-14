@@ -118,9 +118,9 @@ def hello_webAnalytics():
 def hello_yahtzeeSite():
     return render_template('yahtzeeSite.html')
     
-@app.route('/adoptables/')
+@app.route('/adoptablesSite/')
 def hello_adoptables():
-    return render_template('adoptables.html')
+    return render_template('adoptablesSite.html')
 
 if __name__ == '__main__':
     app.run()
