@@ -120,7 +120,7 @@ def hello_yahtzeeSite():
     
 @app.route('/web/adoptablesSite/')
 def hello_adoptables():
-    return render_template('yahtzeeSite.html')
+    return render_template('adoptablesSite.html')
 
 if __name__ == '__main__':
     app.run()
